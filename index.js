@@ -4,6 +4,7 @@ const app = express()
 
 const SITE_PORT = 8000
 
+app.use(express.urlencoded({ extended: true }))
 app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'pug')
 
@@ -13,6 +14,15 @@ app.get('/', function (req, res) {
 
 const log = (req) => {
   console.log(`${req.method}: ${req.url}`)
+  
+  // Content-Type: application/x-www-form-urlencoded
+  if(req.body) {
+    console.log('POST data')
+    Object.keys(req.body).forEach(key => {
+      const value = req.body[key]
+      console.log(`${key}: ${value}`)
+    })
+  }
   return req
 }
 
