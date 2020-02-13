@@ -1,0 +1,16 @@
+include config
+block pageconfig
+- var theTitle = pageTitle ? (siteTitle + " - " + pageTitle) : siteTitle
+
+doctype html
+html
+  head
+    title #{theTitle}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='static/default.css', rel='stylesheet', media='screen')
+    if baseurl
+      base(href=baseurl)
+  body
+    block content
+
+
