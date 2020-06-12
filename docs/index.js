@@ -16,7 +16,7 @@ function post(url, data, callback) {
 }
 
 setTimeout(function(){
-  var url = 'https://127.0.0.1:8000/'
+  var url = 'http://localhost:8000/'
   console.log('Contacting ' + url)
   post(url, "this is some data", status)
 }, 500)
