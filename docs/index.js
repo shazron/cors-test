@@ -4,7 +4,10 @@ function success (text) {
   }
 }
 
-function failure () {
+function failure (err) {
+  if (err) {
+    console.log(err)
+  }
   success('An error occurred.')
   document.getElementById('fallback').style = 'display:block'
 }
