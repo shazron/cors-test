@@ -13,16 +13,16 @@ app.get('/', function (req, res) {
 })
 
 const log = (req) => {
-  console.log(`${req.method}: ${req.url}`)
+  console.log(`${req.method} ${req.url}`)
+  const data = req.method === 'POST' ? req.body : req.query
   
-  // Content-Type: application/x-www-form-urlencoded
-  if(req.body) {
-    console.log('POST data')
-    Object.keys(req.body).forEach(key => {
-      const value = req.body[key]
+  if(data) {
+    Object.keys(data).forEach(key => {
+      const value = data[key]
       console.log(`${key}: ${value}`)
     })
   }
+
   return req
 }
 
@@ -39,6 +39,11 @@ const cors = (res) => {
 app.options('/', function (req, res) {
   log(req)
   cors(res).end()
+})
+
+app.get('/get-test', function (req, res) {
+  log(req)
+  cors(res).send('ok')
 })
 
 app.post('/', function (req, res) {
